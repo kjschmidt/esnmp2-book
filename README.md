@@ -1,6 +1,6 @@
 ## Example files for the title:  
   
-# Essential SNMP 2nd Edition, by Douglas Mauro
+# Essential SNMP 2nd Edition, by Douglas Mauro and Kevin J. Schmidt
   
 [![Essential SNMP 2nd Edition, by Douglas Mauro and Kevin J. Schmidt](http://akamaicovers.oreilly.com/images/9780596008406/cat.gif)](https://www.safaribooksonline.com/library/view/title/0596008406//)
   
