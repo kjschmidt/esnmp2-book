@@ -1,0 +1,13 @@
+serviceInfo     OBJECT IDENTIFIER ::= { mauro 5 }
+-- BEGIN - serviceInfo
+--
+serMailPort  OBJECT-TYPE
+            SYNTAX  INTEGER
+            ACCESS  read-only
+            STATUS  mandatory
+            DESCRIPTION
+              "This file is updated via crontab. It uses netcat
+               to check the port and push a value into this file.
+               FILE-NAME: /opt/OV/local/bin/netcat/mail_status"
+            ::= { serviceInfo 0 }
+

@@ -1,0 +1,88 @@
+TableExtExample DEFINITIONS ::= BEGIN
+
+internet        OBJECT IDENTIFIER ::= { iso(1) org(3) dod(6) 1 }
+enterprises     OBJECT IDENTIFIER ::= { internet(1) private(4) 1 }
+mauro           OBJECT IDENTIFIER ::= { enterprises(1) 2789 }
+other           OBJECT IDENTIFIER ::= { mauro 255 }
+
+AnimalEntry ::=
+        SEQUENCE {
+        animalIndex INTEGER,
+        animalName DisplayString,
+        animalSpecies DisplayString,
+        animalNoise DisplayString,
+        animalDanger INTEGER
+        }
+
+animalTable             OBJECT-TYPE
+        SYNTAX SEQUENCE OF AnimalEntry
+        ACCESS not-accessible
+        STATUS mandatory
+        DESCRIPTION
+                "This is a table of animals that shows:
+                 Name
+                 Species
+                 Noise
+                 Danger Level
+        FILE-NAME: /opt/local/animal.db"
+        ::= { other 247 }
+
+animalEntry             OBJECT-TYPE
+        SYNTAX AnimalEntry
+        ACCESS not-accessible
+        STATUS mandatory
+        DESCRIPTION
+                "List of animalNum"
+        INDEX { animalIndex }
+        ::= { animalTable 1 }
+
+animalIndex             OBJECT-TYPE
+        SYNTAX INTEGER
+        ACCESS read-only
+        STATUS mandatory
+        DESCRIPTION
+                "The unique index number we will use for each row"
+        ::= { animalEntry 1 }
+
+animalName              OBJECT-TYPE
+        SYNTAX DisplayString
+        ACCESS read-only
+        STATUS mandatory
+        DESCRIPTION
+                "My pet name for each animal"
+        ::= { animalEntry 2 }
+
+animalSpecies           OBJECT-TYPE
+        SYNTAX DisplayString
+        ACCESS read-only
+        STATUS mandatory
+        DESCRIPTION
+                "The animal's species"
+        ::= { animalEntry 3 }
+
+animalNoise             OBJECT-TYPE
+        SYNTAX DisplayString
+        ACCESS read-only
+        STATUS mandatory
+        DESCRIPTION
+                "The noise or sound the animal makes"
+        ::= { animalEntry 4 }
+
+animalDanger            OBJECT-TYPE
+        SYNTAX INTEGER {
+                   no-Danger(1),
+                   can-Harm(2),
+                   some-Damage(3),
+                   will-Wound(4),
+                   severe-Pain(5),
+                   will-Kill(6)
+        }
+        ACCESS read-write
+        STATUS mandatory
+        DESCRIPTION
+                "The level of danger that we may face with the
+                particular animal"
+        ::= { animalEntry 5 }
+
+END
+

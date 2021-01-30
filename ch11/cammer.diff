@@ -1,0 +1,37 @@
+51d50
+< 
+62a62,65
+> my %OID_TO_NONARRAY = ( 'dot1dBasePortIfIndex' =>  "1.3.6.1.2.1.17.1.4.1.2",);
+> 
+> 
+> 
+129a133,134
+>     my %macsToIfIndex;
+>     my %macsToIfName;
+132a138
+>         #my $sws = SNMPv2c_Session->open ($opt{sw},$opt{swco}.'@'.$vlan,161)
+141c147,152
+< 	     $port{$vlan}{$mac}=$port;
+---
+>                my $iid = snmpget($opt{swco}.'@'.$opt{sw},"$OID_TO_NONARRAY{'dot1dBasePortIfIndex'}.$port");
+>                my $ifname = snmpget($opt{swco}.'@'.$opt{sw},"ifName.$iid");
+>                #my $ifname = snmpget($opt{swco}.'@'.$opt{sw},"$OID_TO_NONARRAY{'ifName'}.$iid");
+>                $macsToIfIndex{$mac} = $iid;
+>                $macsToIfName{$mac} = $ifname;
+> 	            $port{$vlan}{$mac}=$port;
+145c156,158
+<           sub {  my($port,$if) = pretty(@_);
+---
+>          sub {  
+>          my($port,$if) = pretty(@_);
+>          print "$port,$if\n";
+166c179
+< 	   push @{$output{$name}}, sprintf "%4s  %-17s  %-15s  %s %s",$truevlan,$mac,$ip[0],$host[0],$quest;
+---
+> 	   push @{$output{$name}}, 
+sprintf "%4s (ifIndex = %s, ifName = %s)  %-17s %-15s  %s %s",$truevlan,$macsToIfIndex{$mac},$macsToIfName{$mac},$mac,$ip[0],$host[0],$quest if($ip[0] ne "");
+168a182
+>     print "\n$opt{sw}\n";
+249d262
+< 
+

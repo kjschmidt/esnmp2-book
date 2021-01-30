@@ -1,0 +1,61 @@
+SampleExt DEFINITIONS ::= BEGIN
+
+     -- comments appear here behind the dashes
+
+     internet        OBJECT IDENTIFIER ::= { iso(1) org(3) dod(6) 1 }
+     enterprises     OBJECT IDENTIFIER ::= { internet(1) private(4) 1 }
+     mauro           OBJECT IDENTIFIER ::= { enterprises(1) 2789 }
+
+     -- Now that we have defined mauro, let's define some objects
+
+     sysInfo         OBJECT IDENTIFIER ::= { mauro 3 }
+     fmail           OBJECT IDENTIFIER ::= { mauro 4 }
+     other           OBJECT IDENTIFIER ::= { mauro 255 }
+
+     psZombieNum OBJECT-TYPE
+      SYNTAX  INTEGER
+      ACCESS  read-only
+      STATUS  mandatory
+      DESCRIPTION
+        "Search through ps and return the number of zombies.
+         READ-COMMAND: VALUE= ps -ef | grep -v grep | grep ­c  \<defunct\> ; echo $VALUE "
+     ::= { sysInfo 0 }
+
+     prtDiagExitC OBJECT-TYPE
+       SYNTAX  INTEGER
+       ACCESS  read-only
+       STATUS  mandatory
+       DESCRIPTION
+         "On Solaris, prtdiag shows us system diagnostic information.
+          The manpage states that if this command exits
+          with a non-zero value, we have a problem. This is a great
+          polling mechanism for some systems.
+          READ-COMMAND: /usr/platform/ uname -m /sbin/prtdiag > /dev/null; echo $?"
+     ::= { sysInfo 1 }
+
+    whosOnCall   OBJECT-TYPE
+      SYNTAX  OctetString
+      ACCESS  read-write
+      STATUS  mandatory
+      DESCRIPTION
+        "This file contains the name of the person who
+         will be on call today. The helpdesk uses this
+         file. Only the helpdesk and managers should update
+         this file. If you are sick or unable to be on call
+         please contact your manager and/or the helpdesk.
+         FILE-NAME: /opt/local/oncall/today.txt"
+    ::= { other 0 }
+
+    fmailListMsgs OBJECT-TYPE
+      SYNTAX DisplayString
+      ACCESS read-only
+      STATUS mandatory
+      DESCRIPTION
+        "List of messages on the mail queue.
+         READ-COMMAND: /usr/lib/sendmail -bp
+         READ-COMMAND-TIMEOUT: 10"
+    ::= { fmail 2 }
+
+
+END
+

@@ -1,0 +1,18 @@
+This archive contains the examples used in the Second Edition of O'Reilly and
+Associates' Essential SNMP. Each directory name corresponds to a chapter in
+the book that contained examples. Please note the following.
+
+ch11/ contains mostly Perl scripts. As such, you will need to have
+Perl installed on your system. Please go to http://www.perl.com for more
+information.
+
+ch14/ contains Java source code. Included is a Makefile for building the 
+source. Also included are Unix shell scripts from running each sample
+application. In order to run and complile the examples you will
+need to obtain the SNMP4J library from http://www.snmp4j.org. Once you
+download the ZIP file, you can find SNMP4J.jar in snmp4j/dist/lib/. You may
+also need the log4j library as well. SNMP4J comes with a copy of this library
+and its location in the ZIP is snmp4j/lib/. Finally, you may need to edit
+the Makefile and shell scripts to point to the location of your javac and
+java programs, as well as the location where installed SNMP4J.jar and the
+log4j jar.

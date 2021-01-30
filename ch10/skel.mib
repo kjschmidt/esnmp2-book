@@ -1,0 +1,7 @@
+skeletonVariable OBJECT-TYPE
+    SYNTAX Integer
+    ACCESS Read-Write
+    DESCRIPTION
+        "This is an example object."
+::= { extensionGroup 1 }
+
