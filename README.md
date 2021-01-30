@@ -1,4 +1,4 @@
-## Example files for the title:  
+#### Source code examples for Essential SNMP 2nd Edition, by Douglas Mauro and Kevin J. Schmidt
   
 # Essential SNMP 2nd Edition, by Douglas Mauro and Kevin J. Schmidt
   
