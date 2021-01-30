@@ -2,7 +2,7 @@
   
 # Essential SNMP 2nd Edition, by Douglas Mauro
   
-[![Essential SNMP 2nd Edition, by Douglas Mauro](http://akamaicovers.oreilly.com/images/9780596008406/cat.gif)](https://www.safaribooksonline.com/library/view/title/0596008406//)
+[![Essential SNMP 2nd Edition, by Douglas Mauro and Kevin J. Schmidt](http://akamaicovers.oreilly.com/images/9780596008406/cat.gif)](https://www.safaribooksonline.com/library/view/title/0596008406//)
   
 The following applies to example files from material published by O’Reilly Media, Inc. Content from other publishers may include different rules of usage. Please refer to any additional usage rights explained in the actual example files or refer to the publisher’s website.
   
